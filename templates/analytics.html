@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Attendance Analytics</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<h2>Attendance Analytics</h2>
+
+{% if from_date %}
+
+<div class="row mb-4">
+
+    <div class="col-md-4">
+        <div class="card bg-success text-white shadow">
+            <div class="card-body text-center">
+                <h5>Present</h5>
+                <h2>{{ present }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card bg-danger text-white shadow">
+            <div class="card-body text-center">
+                <h5>Absent</h5>
+                <h2>{{ absent }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card bg-primary text-white shadow">
+            <div class="card-body text-center">
+                <h5>Attendance %</h5>
+                <h2>{{ attendance_percentage }}%</h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<br><br>
+
+{% endif %}
+
+<form method="POST">
+
+    <label>From Date:</label>
+
+    <input
+        type="date"
+        name="from_date"
+        required>
+
+    <br><br>
+
+    <label>To Date:</label>
+
+    <input
+        type="date"
+        name="to_date"
+        required>
+
+    <br><br>
+
+    <button type="submit">
+        Generate Analytics
+    </button>
+
+</form>
+
+<br><br>
+
+{% if from_date %}
+
+<h3>
+    Analytics From:
+    {{ from_date }}
+    To
+    {{ to_date }}
+</h3>
+
+{% endif %}
+
+<div class="card shadow p-4 mb-4">
+
+    <h4 class="text-center mb-3">
+        Attendance Distribution
+    </h4>
+
+    <canvas id="attendanceChart"></canvas>
+
+</div>     
+
+<br><br>
+
+<div class="card shadow p-4 mb-4">
+
+    <h4 class="text-center mb-3">
+        Daily Attendance Trend
+    </h4>
+
+    <canvas id="trendChart"></canvas>
+
+</div>
+
+<script>
+
+const ctx = document.getElementById('attendanceChart');
+
+new Chart(ctx, {
+    type: 'pie',
+
+    data: {
+        labels: ['Present', 'Absent'],
+
+        datasets: [{
+            data: [
+                {{ present }},
+                {{ absent }}
+            ],
+            backgroundColor: [
+                '#4CAF50',
+                '#F44336'
+            ]
+        }]
+    }
+});
+
+</script>
+
+<script>
+
+const trendCtx =
+document.getElementById('trendChart');
+
+new Chart(trendCtx, {
+
+    type: 'line',
+
+    data: {
+
+        labels: {{ trend_dates | tojson }},
+
+        datasets: [{
+
+            label: 'Present Students',
+
+            data: {{ trend_counts | tojson }},
+
+            borderColor: '#2196F3',
+
+            tension: 0.4,
+
+            pointRadius: 5,
+
+            fill: false
+
+        }]
+    }
+});
+
+</script>
+
+<br>
+
+<a href="/">Back Home</a>
+
+</body>
+
+</html>

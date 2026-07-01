@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Attendance History</title>
+</head>
+
+<body>
+
+<h2>Attendance History</h2>
+
+<table border="1">
+
+<tr>
+    <th>Student</th>
+    <th>Date</th>
+    <th>Status</th>
+</tr>
+
+{% for record in records %}
+
+<tr>
+    <td>{{ record[0] }}</td>
+    <td>{{ record[1] }}</td>
+    <td>{{ record[2] }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="/">Back Home</a>
+
+</body>
+</html>

@@ -1,0 +1,191 @@
+body{
+    font-family: 'Poppins', sans-serif;
+
+    background: linear-gradient(
+        135deg,
+        #667eea,
+        #764ba2
+    );
+
+    min-height: 100vh;
+
+    margin: 0;
+
+    padding: 20px;
+}
+
+.container{
+
+    max-width: 1200px;
+
+    margin: auto;
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    box-shadow:
+    0 8px 20px rgba(0,0,0,0.2);
+}
+
+h1,h2,h3{
+
+    color:#333;
+}
+
+a{
+
+    text-decoration:none;
+
+    padding:10px 15px;
+
+    background:#4CAF50;
+
+    color:white;
+
+    border-radius:8px;
+
+    display:inline-block;
+
+    margin:5px;
+}
+
+a:hover{
+
+    background:#45a049;
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:20px;
+}
+
+th{
+
+    background:#4F46E5;
+
+    color:white;
+
+    padding:12px;
+}
+
+td{
+
+    padding:12px;
+}
+
+tr:nth-child(even){
+
+    background:#f3f4f6;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+}
+
+.card{
+    border-radius:15px;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.btn{
+    border-radius:10px;
+}
+
+body{
+    background: linear-gradient(
+        135deg,
+        #e3f2fd,
+        #ffffff
+    );
+
+    font-family: 'Poppins', sans-serif;
+
+    min-height: 100vh;
+}
+
+.card{
+    border-radius:20px;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.btn{
+    border-radius:10px;
+}
+
+.card{
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    transition:all 0.3s ease;
+}
+
+.card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 15px 30px rgba(0,0,0,0.2);
+}
+
+.nav-link{
+
+    margin-left:15px;
+
+    transition:0.3s;
+}
+
+.nav-link:hover{
+
+    transform:translateY(-2px);
+}
+
+.nav-link{
+    margin-left:15px;
+    font-weight:600;
+}
+
+.nav-link:hover{
+    transform:translateY(-2px);
+}
+
+.dark-mode {
+    background-color: #121212 !important;
+    color: white !important;
+}
+
+.dark-mode .card {
+    background-color: #1e1e1e !important;
+    color: white !important;
+}
+
+.dark-mode .card-header {
+    color: white !important;
+}
+
+.dark-mode .table {
+    color: white !important;
+}
+
+.dark-mode .navbar {
+    background-color: #000 !important;
+}
+
+.dark-mode .progress {
+    background-color: #333 !important;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mark Attendance</title>
+</head>
+
+<body>
+
+<h2>Mark Attendance</h2>
+
+<form method="POST">
+
+    <label>Select Student:</label>
+
+    <select name="student_id">
+
+        {% for student in students %}
+
+        <option value="{{ student[0] }}">
+            {{ student[1] }}
+        </option>
+
+        {% endfor %}
+
+    </select>
+
+    <br><br>
+
+    <label>Select Date:</label>
+
+<input
+    type="date"
+    name="attendance_date"
+    required>
+
+    <br><br>
+
+    <label>Status:</label>
+
+    <select name="status">
+        <option value="Present">Present</option>
+        <option value="Absent">Absent</option>
+    </select>
+
+    <br><br>
+
+    <button type="submit">
+        Save Attendance
+    </button>
+
+</form>
+
+<br>
+
+<a href="/">Back Home</a>
+
+</body>
+</html>

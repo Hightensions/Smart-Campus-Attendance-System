@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Attendance Management System</title>
+
+<link rel="preconnect"
+      href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet">
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+
+    <div class="container-fluid">
+
+        <a class="navbar-brand btn btn-success"
+           href="/">
+            Attendance System
+        </a>
+
+        <div class="d-flex ms-auto">
+
+            <a class="nav-link text-white" href="/">
+                <i class="bi bi-house-fill"></i> Dashboard
+            </a>
+
+            <a class="nav-link text-white" href="/students">
+                <i class="bi bi-people-fill"></i> Students
+            </a>
+
+            <a class="nav-link text-white" href="/attendance">
+                <i class="bi bi-clipboard-check-fill"></i> Attendance
+            </a>
+
+            <a class="nav-link text-white" href="/report">
+                <i class="bi bi-file-earmark-bar-graph-fill"></i> Reports
+            </a>
+
+            <a class="nav-link text-white" href="/analytics">
+                <i class="bi bi-graph-up-arrow"></i> Analytics
+            </a>
+
+            <a class="nav-link text-danger" href="/logout">
+                <i class="bi bi-box-arrow-right"></i> Logout
+            </a>
+
+            <button
+    id="darkModeBtn"
+    class="btn btn-outline-light ms-3">
+
+    🌙 Dark Mode
+
+</button>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<div class="container mt-5">
+    <div class="row mb-4">
+
+    <div class="col-md-4">
+        <div class="card text-center border-0 shadow-lg bg-primary text-white">
+            <div class="card-body">
+                <h5>Total Students</h5>
+                <h2>{{ total_students }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card text-center border-0 shadow-lg bg-success text-white">
+            <div class="card-body">
+                <h5>Present</h5>
+                <h2>{{ present_today }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card text-center border-0 shadow-lg bg-danger text-white">
+            <div class="card-body">
+                <h5>Absent</h5>
+                <h2>{{ absent_today }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+<div class="card shadow mt-4">
+
+    <div class="card-header bg-warning">
+
+        <h4>
+            🏆 Top Performer
+        </h4>
+
+    </div>
+
+<div class="card shadow mt-4">
+
+    <div class="card-header bg-danger text-white">
+
+        <h4>
+            ⚠️ Low Attendance Alerts
+        </h4>
+
+    </div>
+
+    <div class="card-body">
+
+        {% if low_attendance_students %}
+
+            {% for student in low_attendance_students %}
+
+                <div class="d-flex justify-content-between border-bottom p-2">
+
+                    <strong>
+                        {{ student[0] }}
+                    </strong>
+
+                    <span class="badge bg-danger">
+
+                        {{ student[1] }}%
+
+<a
+    href="/send_alert/{{ student[0] }}/{{ student[1] }}"
+    class="btn btn-sm btn-warning ms-2">
+
+    Send Alert
+
+</a>
+
+                    </span>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="alert alert-success">
+
+                No Students Below 75%
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+    <div class="card-body text-center">
+
+        {% if top_student %}
+
+            <h3>
+                {{ top_student }}
+            </h3>
+
+            <h4 class="text-success">
+                {{ top_percentage }}%
+            </h4>
+
+        {% else %}
+
+            <h5>
+                No attendance records available
+            </h5>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+<div class="card shadow mt-4">
+
+    <div class="card-header bg-primary text-white">
+
+        <h4>
+            Overall Attendance Rate
+        </h4>
+
+    </div>
+
+    <div class="card-body">
+
+        <h5>
+            {{ overall_percentage }}%
+        </h5>
+
+        <div class="progress" style="height:30px;">
+
+            <div
+                class="progress-bar progress-bar-striped progress-bar-animated"
+                role="progressbar"
+                style="width: {{ overall_percentage }}%;">
+
+                {{ overall_percentage }}%
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+    <h1 class="text-center mb-5">
+        Attendance Management System
+    </h1>
+
+    <div class="d-grid gap-3">
+
+        <a href="/add_student" class="btn btn-lg btn-primary shadow">
+            <i class="bi bi-person-plus-fill"></i>
+            Add Student
+        </a>
+
+        <a href="/students" class="btn btn-lg btn-success shadow">
+            <i class="bi bi-people-fill"></i>
+            View Students
+        </a>
+
+        <a href="/attendance" class="btn btn-lg btn-warning shadow">
+            <i class="bi bi-clipboard-check-fill"></i>
+            Mark Attendance
+        </a>
+
+        <a href="/history" class="btn btn-lg btn-info shadow">
+            <i class="bi bi-clock-history"></i>
+            Attendance History
+        </a>
+
+        <a href="/report" class="btn btn-lg btn-dark shadow">
+            <i class="bi bi-file-earmark-bar-graph-fill"></i>
+            Attendance Report
+        </a>
+
+        <a href="/analytics" class="btn btn-lg btn-secondary shadow">
+            <i class="bi bi-graph-up-arrow"></i>
+            Attendance Analytics
+        </a>
+
+        <a href="/predictor"
+               class="btn btn-dark w-100 mb-3">
+             Attendance Predictor
+
+        </a>
+
+    </div>
+
+</div>
+
+<hr>
+
+<div class="card shadow mt-4">
+
+    <div class="card-header bg-dark text-white">
+
+        <h4>
+            Recent Activity
+        </h4>
+
+    </div>
+
+    <div class="card-body">
+
+        {% for activity in recent_activity %}
+
+        <div class="d-flex justify-content-between border-bottom p-2">
+
+            <div>
+
+                <strong>
+                    {{ activity[0] }}
+                </strong>
+
+            </div>
+
+            <div>
+
+                {% if activity[1] == "Present" %}
+
+                <span class="badge bg-success">
+                    Present
+                </span>
+
+                {% else %}
+
+                <span class="badge bg-danger">
+                    Absent
+                </span>
+
+                {% endif %}
+
+            </div>
+
+            <div>
+
+                {{ activity[2] }}
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

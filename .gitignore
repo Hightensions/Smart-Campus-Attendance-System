@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual Environment
+venv/
+.env
+
+# VS Code
+.vscode/
+
+# Flask
+instance/
+
+# Database (Optional)
+# Uncomment if you don't want to upload your local database
+# database.db
+
+# Reports
+reports/*.pdf
+reports/*.xlsx
+reports/*.csv
+
+# OS Files
+.DS_Store
+Thumbs.db
