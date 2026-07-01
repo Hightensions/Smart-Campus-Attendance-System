@@ -141,7 +141,51 @@ student123
 
 ## 📸 Screenshots
 
-Coming Soon...
+### 🔐 Login Page
+
+![Login](screenshots/login.png)
+
+---
+
+### 🏠 Dashboard
+
+![Dashboard](screenshots/dashboard.png)
+
+---
+
+### 👨‍🎓 Student Management
+
+![Students](screenshots/students.png)
+
+---
+
+### 📊 Analytics Dashboard
+
+![Analytics](screenshots/analytics.png)
+
+---
+
+### 📈 Attendance Predictor
+
+![Predictor](screenshots/predictor.png)
+
+---
+
+### 📄 Reports
+
+![Reports](screenshots/reports.png)
+
+---
+
+### 🌙 Dark Mode
+
+![Dark Mode](screenshots/darkmode.png)
+
+---
+
+### 📧 Email Alerts
+
+![Email](screenshots/email.png)
 
 ---
 
